@@ -3,7 +3,7 @@ import Return from "../models/returnModel.js";
 const determineRoute = (condition) =>{
     if(condition=='Good')return "Resale";
     if(condition=="Moderate")return "Refurbish";
-    return "Recycle/Donate";
+    return "Recycle";
 };
 
 export const createReturn = async(req,res) =>{

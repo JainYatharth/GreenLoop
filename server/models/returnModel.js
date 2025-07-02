@@ -16,7 +16,8 @@ const returnSchema = new mongoose.Schema({
     },
     returnReason:{
         type:String,
-        required:true
+        default:"",
+        required:false
     },
     condition:{
         type:String,

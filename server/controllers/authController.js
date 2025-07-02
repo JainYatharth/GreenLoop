@@ -23,7 +23,6 @@ export const register = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
         res.cookie('token', token, {
-            id:user._id,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
@@ -85,25 +84,25 @@ export const logout = async (req, res) => {
         return res.json({ success: false, message: error.message });
     }
 }
-export const checkAuth=async (req,res) => {
-    try {
-        const token = req.cookies.token;
-        if (!token) {
-            res.clearCookie('token');
-            return res.json({ user: null })
+// export const checkAuth=async (req,res) => {
+//     try {
+//         const token = req.cookies.token;
+//         if (!token) {
+//             res.clearCookie('token');
+//             return res.json({ user: null })
 
-        }
-        let decoded;
-        try {
-            decoded = jwt.verify(token, process.env.JWT_SECRET);
-        } catch (error) {
-            console.log("JWT verification failed:", err.message);
-            res.clearCookie('token');
-            return res.json({ user: null });
-        }
-        res.json({ user: decoded.id });
-    } catch (error) {
-        console.error('Get current user error:', error)
-        res.status(500).json({ error: 'Failed to get current user' })
-    }
-}
+//         }
+//         let decoded;
+//         try {
+//             decoded = jwt.verify(token, process.env.JWT_SECRET);
+//         } catch (error) {
+//             console.log("JWT verification failed:", error.message);
+//             res.clearCookie('token');
+//             return res.json({ user: null });
+//         }
+//         res.json({ user: decoded.id });
+//     } catch (error) {
+//         console.error('Get current user error:', error)
+//         res.status(500).json({ error: 'Failed to get current user' })
+//     }
+// }
