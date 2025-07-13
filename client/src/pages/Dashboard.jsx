@@ -1,13 +1,17 @@
-import React from "react";
+"use client"
+
+import ImpactDashboard from "../components/ImpactDashboard"
+import Navbar from "../components/Navbar"
 
 const Dashboard = () => {
   return (
-    <div>
-      <div className="p-6">
-        <h1 className="text-2xl font-bold">Welcome to GreenLoopX Dashboard</h1>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <main className="py-8">
+        <ImpactDashboard />
+      </main>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard

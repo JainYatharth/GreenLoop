@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Package, Shirt, Home, Gamepad2, ShoppingCart, Filter, Loader2 } from "lucide-react"
 import InventoryCard from "../components/InventoryCard"
 import InventoryTable from "../components/InventoryTable"
+import Navbar from "../components/Navbar"
 import instance from "../axiosConfig"
 
 const InventoryPage = () => {
@@ -14,26 +15,17 @@ const InventoryPage = () => {
   const [loading, setLoading] = useState(true)
   const [categoryItems, setCategoryItems] = useState({})
   const [loadingItems, setLoadingItems] = useState({})
+  const [error, setError] = useState(null)
 
-  // Category icons mapping
-  const categoryIcons = {
-    electronics: Package,
-    clothing: Shirt,
-    "home-kitchen": Home,
-    toys: Gamepad2,
-    groceries: ShoppingCart,
-  }
+  // Hardcoded categories with icons and colors
+  const hardcodedCategories = [
+    { id: "electronics", name: "Electronics", icon: Package, color: "from-blue-500 to-blue-600" },
+    { id: "clothing", name: "Clothing", icon: Shirt, color: "from-pink-500 to-pink-600" },
+    { id: "home-kitchen", name: "Home & Kitchen", icon: Home, color: "from-green-500 to-green-600" },
+    { id: "toys", name: "Toys", icon: Gamepad2, color: "from-yellow-500 to-yellow-600" },
+    { id: "groceries", name: "Groceries", icon: ShoppingCart, color: "from-orange-500 to-orange-600" },
+  ]
 
-  // Category colors mapping
-  const categoryColors = {
-    electronics: "from-blue-500 to-blue-600",
-    clothing: "from-pink-500 to-pink-600",
-    "home-kitchen": "from-green-500 to-green-600",
-    toys: "from-yellow-500 to-yellow-600",
-    groceries: "from-orange-500 to-orange-600",
-  }
-
-  // Fetch categories summary on component mount
   useEffect(() => {
     fetchCategoriesSummary()
   }, [])
@@ -41,15 +33,39 @@ const InventoryPage = () => {
   const fetchCategoriesSummary = async () => {
     try {
       setLoading(true)
-      const response = await instance.get("/api/inventory/categories")
-      const categoriesWithIcons = response.data.map((category) => ({
-        ...category,
-        icon: categoryIcons[category.id] || Package,
-        color: categoryColors[category.id] || "from-gray-500 to-gray-600",
-      }))
-      setCategories(categoriesWithIcons)
+      setError(null)
+
+      // Fetch data for all categories
+      const categoryPromises = hardcodedCategories.map(async (category) => {
+        try {
+          const response = await instance.get(`/api/inventory/categories/${category.id}/items`)
+          const items = response.data
+
+          const totalItems = items.length
+          const resaleEligible = items.filter(
+            (item) => item.route?.toLowerCase() === "resale" || item.condition?.toLowerCase() === "good",
+          ).length
+
+          return {
+            ...category,
+            totalItems,
+            resaleEligible,
+          }
+        } catch (error) {
+          console.error(`Error fetching data for ${category.name}:`, error)
+          return {
+            ...category,
+            totalItems: 0,
+            resaleEligible: 0,
+          }
+        }
+      })
+
+      const categoriesWithData = await Promise.all(categoryPromises)
+      setCategories(categoriesWithData)
     } catch (error) {
-      console.error("Error fetching categories:", error)
+      console.error("Error fetching categories summary:", error)
+      setError("Failed to load inventory data")
     } finally {
       setLoading(false)
     }
@@ -76,9 +92,7 @@ const InventoryPage = () => {
       setExpandedCategory(null)
     } else {
       setExpandedCategory(categoryId)
-      if (!categoryItems[categoryId]) {
-        fetchCategoryItems(categoryId)
-      }
+      fetchCategoryItems(categoryId)
     }
   }
 
@@ -104,52 +118,42 @@ const InventoryPage = () => {
     }
   }
 
-  const handleMarkProcessed = async (itemId) => {
-    try {
-      await instance.put(`/api/inventory/items/${itemId}/processed`)
-      // Refresh the current category items
-      if (expandedCategory) {
-        fetchCategoryItems(expandedCategory)
-      }
-      // Refresh categories summary to update stats
-      fetchCategoriesSummary()
-    } catch (error) {
-      console.error("Error marking as processed:", error)
-      throw error
-    }
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-96">
+          <div className="flex items-center gap-3">
+            <Loader2 className="w-6 h-6 animate-spin text-purple-600" />
+            <span className="text-gray-600">Loading inventory data...</span>
+          </div>
+        </div>
+      </div>
+    )
   }
 
-//   if (loading) {
-//     return (
-//       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-//         <div className="flex items-center gap-3">
-//           <Loader2 className="w-6 h-6 animate-spin text-purple-600" />
-//           <span className="text-gray-600">Loading inventory data...</span>
-//         </div>
-//       </div>
-//     )
-//   }
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="flex items-center justify-center min-h-96">
+          <div className="text-center">
+            <div className="text-red-600 text-lg mb-4">{error}</div>
+            <button
+              onClick={fetchCategoriesSummary}
+              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold text-gray-900 flex w-full">GreenLoopX</h1>
-            </div>
-    
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600">Welcome</span>
-                <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
-                  
-                </div>
-              </div>
-            
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Page Title */}
       <div className="bg-gradient-to-r from-purple-600 to-purple-900 py-8">
@@ -219,10 +223,9 @@ const InventoryPage = () => {
                   key={category.id}
                   category={category}
                   items={categoryItems[expandedCategory] || []}
-                  //loading={loadingItems[expandedCategory]}
+                  loading={loadingItems[expandedCategory]}
                   onClose={() => setExpandedCategory(null)}
                   onUpdateRoute={handleUpdateRoute}
-                  onMarkProcessed={handleMarkProcessed}
                 />
               ))}
           </div>
