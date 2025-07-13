@@ -10,25 +10,19 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      verifyToken()
-    } else {
-      setLoading(false)
-    }
+    verifyToken()
   }, [])
 
   const verifyToken = async () => {
     try {
-      const response = await instance.get("/api/auth/verify-token", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      setUser(response.data.user)
+      const response = await instance.get("/api/auth/verify-token")
+      if (response.data.success) {
+        setUser(response.data.user)
+      } else {
+        setUser(null)
+      }
     } catch (error) {
       console.error("Token verification failed:", error)
-      localStorage.removeItem("token")
       setUser(null)
     } finally {
       setLoading(false)

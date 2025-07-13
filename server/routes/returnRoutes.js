@@ -1,9 +1,9 @@
-import express from "express";
-import { createReturn } from "../controllers/returnController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import express from "express"
+import { createReturn } from "../controllers/returnController.js"
+import { protect } from "../middleware/authMiddleware.js"
 
-const router = express.Router();
+const router = express.Router()
 
-router.post("/returns", protect, createReturn);
+router.post("/return", protect, createReturn)
 
-export default router;
+export default router
