@@ -9,7 +9,7 @@ const InventoryCard = ({ category, isExpanded, onClick }) => {
     <div
       onClick={onClick}
       className={`bg-white rounded-lg shadow-sm border cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1 ${
-        isExpanded ? "ring-2 ring-purple-500 shadow-lg" : ""
+        isExpanded ? " shadow-lg" : ""
       }`}
     >
       {/* Gradient Header
@@ -25,7 +25,7 @@ const InventoryCard = ({ category, isExpanded, onClick }) => {
             <h3 className="font-semibold text-gray-900">{category.name}</h3>
           </div>
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-purple-600" />
+            <ChevronUp className="w-5 h-5 text-teal-600" />
           ) : (
             <ChevronDown className="w-5 h-5 text-gray-400" />
           )}

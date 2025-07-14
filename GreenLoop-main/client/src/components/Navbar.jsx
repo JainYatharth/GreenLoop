@@ -32,11 +32,11 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white text-xl shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="marg mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <h1 className="text-2xl font-bold text-gray-900">GreenLoop</h1>
 
-          <div className="flex items-center gap-15 space-x-8">
+          <div className="flex items-center gap-15">
             {navItems.map((item) => {
               const IconComponent = item.icon
               const isActive = location.pathname === item.path
@@ -44,11 +44,10 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center gap-2 px-3 py-2 border-b-2 transition-all duration-200 ${
-  isActive
-    ? " text-teal-700 font-semibold"
-    : "bg-grey-100 text-gray-600 hover:bg-gray-100 hover:text-teal-600"
-}`}>
+                  className={`flex  gap-2 px-3 py-2 border-b-2 transition-all duration-200 ${isActive
+                      ? " text-teal-700 font-semibold"
+                      : "bg-grey-100 text-gray-600 hover:bg-gray-100 hover:text-teal-600"
+                    }`}>
 
                   {item.label}
                 </Link>
@@ -57,7 +56,7 @@ const Navbar = () => {
 
             <button
               onClick={handleLogout}
-              className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+              className="flex items-center gap-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
             >
               <LogOut className="w-4 h-4" />
               Logout

@@ -124,7 +124,7 @@ const InventoryPage = () => {
         <Navbar />
         <div className="flex items-center justify-center min-h-96">
           <div className="flex items-center gap-3">
-            <Loader2 className="w-6 h-6 animate-spin text-purple-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-teal-600" />
             <span className="text-gray-600">Loading inventory data...</span>
           </div>
         </div>
@@ -141,7 +141,7 @@ const InventoryPage = () => {
             <div className="text-red-600 text-lg mb-4">{error}</div>
             <button
               onClick={fetchCategoriesSummary}
-              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+              className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700"
             >
               Retry
             </button>
@@ -152,22 +152,21 @@ const InventoryPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
 
       {/* Page Title */}
-      <div className="bg-gradient-to-r from-purple-600 to-purple-900 py-8">
+      <div className="bg-gradient-to-r from-teal-500 to-teal-700 h-14 flex items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-white">Inventory Tracker</h1>
-          <p className="text-purple-100 mt-2">Monitor and manage returned items across all categories</p>
+          <h1 className="txt font-bold text-white">Inventory Tracker</h1>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="mb-8 bg-white rounded-lg shadow-sm border p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <Filter className="w-5 h-5 text-purple-600" />
+        <div className="mar space-y-5">
+          <div className="flex  items-center gap-4">
+            <Filter className="w-5 h-5 text-teal-600" />
             <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -176,7 +175,7 @@ const InventoryPage = () => {
               <select
                 value={conditionFilter}
                 onChange={(e) => setConditionFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-transparent"
               >
                 <option value="all">All Conditions</option>
                 <option value="good">Good</option>
@@ -189,7 +188,7 @@ const InventoryPage = () => {
               <select
                 value={routeFilter}
                 onChange={(e) => setRouteFilter(e.target.value)}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-transparent"
               >
                 <option value="all">All Routes</option>
                 <option value="resale">Resale</option>
@@ -202,7 +201,7 @@ const InventoryPage = () => {
         </div>
 
         {/* Category Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-6 mb-8">
           {categories.map((category) => (
             <InventoryCard
               key={category.id}

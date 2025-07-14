@@ -70,13 +70,38 @@
   font-style: normal;
 }
 
-.nav::after{
-  content: '';
-  height: 2px;
-  width: 100%;
-  background: rgb(165, 53, 53);
-  display: block;
-  position: absolute;
-  top: 30;
+.cardm{
+  margin: 10px 10px 10px 10px;
 }
-
+.cardm h1{
+  font-size: 30px;
+  font-weight: 600;
+  margin: 10px 10px;
+}
+.stat{
+  margin-top: 80px;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.stat h1{
+  font-size: 20px;
+}
+.leaf{
+  margin-left: 10px;
+}
+.statm{
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  
+}
+.cardm h3{
+  font-size: 25px;
+  margin-bottom: -15px;
+}
+.cardm h2{
+  font-size: 25px;
+}
+.marg{
+  margin-right: 17px;
+}

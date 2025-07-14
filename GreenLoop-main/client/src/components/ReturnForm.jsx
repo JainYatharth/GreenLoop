@@ -19,7 +19,7 @@ const ReturnForm = () => {
     condition: "",
   })
 
-  const categories = ["Grocery", "Electronics", "Home & Kitchen", "Toys", "Beauty"]
+  const categories = ["Grocery", "Electronics", "Home & Kitchen", "Toys", "Clothing"]
   const conditions = ["Good", "Moderate", "Damaged"]
 
   const validateForm = () => {
@@ -125,7 +125,7 @@ const ReturnForm = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="mar bg-gradient-to-r from-purple-600 to-purple-950 h-14 flex items-center justify-center">
+      <div className="mar bg-gradient-to-r from-teal-500 to-teal-700 h-14 flex items-center justify-center">
         <h1 className="txt text-white">Returns Intake Form</h1>
       </div>
       {/* Form Container - Centered with increased width */}
@@ -135,7 +135,7 @@ const ReturnForm = () => {
             {/* Product Name */}
             <div className="mar space-y-5">
               <div className="flex items-center gap-4">
-                <Package className="h-8 w-8 text-purple-600" />
+                <Package className="h-8 w-8 text-teal-600" />
                 <label className="text-xl text-gray-800">
                   Product Name <span className="text-red-500">*</span>
                 </label>
@@ -148,7 +148,7 @@ const ReturnForm = () => {
                 className={`w-full px-6 py-6 h-10 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${
                   errors.productName
                     ? "border-red-400 bg-red-50 focus:border-red-500"
-                    : "border-gray-300 bg-white focus:border-purple-500 shadow-sm hover:shadow-md"
+                    : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
                 }`}
                 placeholder="Enter product name"
               />
@@ -163,7 +163,7 @@ const ReturnForm = () => {
             {/* Product ID */}
             <div className="mar space-y-5">
               <div className="flex items-center gap-4">
-                <Hash className="h-8 w-8 text-purple-600" />
+                <Hash className="h-8 w-8 text-teal-600" />
                 <label className="text-xl text-gray-800">
                   Product ID <span className="text-red-500">*</span>
                 </label>
@@ -176,7 +176,7 @@ const ReturnForm = () => {
                 className={`w-full px-6 h-10 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${
                   errors.productId
                     ? "border-red-400 bg-red-50 focus:border-red-500"
-                    : "border-gray-300 bg-white focus:border-purple-500 shadow-sm hover:shadow-md"
+                    : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
                 }`}
                 placeholder="Enter product ID"
               />
@@ -191,7 +191,7 @@ const ReturnForm = () => {
             {/* Product Category */}
             <div className="mar space-y-5">
               <div className="flex items-center gap-4">
-                <Tag className="h-8 w-8 text-purple-600" />
+                <Tag className="h-8 w-8 text-teal-600" />
                 <label className="text-xl text-gray-800">
                   Product Category <span className="text-red-500">*</span>
                 </label>
@@ -203,7 +203,7 @@ const ReturnForm = () => {
                 className={`w-full h-10 px-6 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 bg-white ${
                   errors.productCategory
                     ? "border-red-400 bg-red-50 focus:border-red-500"
-                    : "border-gray-300 focus:border-purple-500 shadow-sm hover:shadow-md"
+                    : "border-gray-300 focus:border-teal-500 shadow-sm hover:shadow-md"
                 }`}
               >
                 <option value="">Select category</option>
@@ -224,7 +224,7 @@ const ReturnForm = () => {
             {/* Return Reason */}
             <div className="mar space-y-5">
               <div className="flex items-center gap-4">
-                <MessageSquare className="h-8 w-8 text-purple-600" />
+                <MessageSquare className="h-8 w-8 text-teal-600" />
                 <label className="text-xl text-gray-800">Return Reason</label>
               </div>
               <textarea
@@ -232,7 +232,7 @@ const ReturnForm = () => {
                 value={formData.returnReason}
                 onChange={handleInputChange}
                 rows={5}
-                className="w-full px-6 py-6 text-xl border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-0 focus:border-purple-500 transition-all duration-200 resize-none shadow-sm hover:shadow-md"
+                className="w-full px-6 py-6 text-xl border-2 border-gray-300 bg-white rounded-2xl focus:outline-none focus:ring-0 focus:border-teal-500 transition-all duration-200 resize-none shadow-sm hover:shadow-md"
                 placeholder="Describe the reason for return (optional)"
               />
             </div>
@@ -240,7 +240,7 @@ const ReturnForm = () => {
             {/* Condition */}
             <div className="mar space-y-8">
               <div className="flex items-center gap-4 mar2">
-                <AlertCircle className="h-8 w-8 text-purple-600" />
+                <AlertCircle className="h-8 w-8 text-teal-600" />
                 <label className="text-xl text-gray-800">
                   Condition <span className="text-red-500">*</span>
                 </label>
@@ -251,8 +251,8 @@ const ReturnForm = () => {
                     key={condition}
                     className={`flex h-7.5 items-center justify-center p-8 border-2 rounded-2xl cursor-pointer transition-all duration-200 ${
                       formData.condition === condition
-                        ? "border-purple-500 bg-purple-50 text-purple-700 shadow-lg"
-                        : "border-gray-300 bg-white hover:border-purple-300 hover:bg-purple-25 shadow-sm hover:shadow-md"
+                        ? "border-teal-500 bg-teal-50 text-teal-700 shadow-lg"
+                        : "border-gray-300 bg-white hover:border-teal-300 hover:bg-teal-25 shadow-sm hover:shadow-md"
                     }`}
                   >
                     <input
@@ -280,7 +280,7 @@ const ReturnForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-44 h-10 flex justify-center txt2 items-center text-2xl font-bold text-white bg-purple-600 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition-all duration-200 shadow-lg hover:shadow-2xl"
+                className="w-44 h-10 flex justify-center txt2 items-center text-2xl font-bold text-white bg-teal-600 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition-all duration-200 shadow-lg hover:shadow-2xl"
               >
                 {loading ? (
                   <>

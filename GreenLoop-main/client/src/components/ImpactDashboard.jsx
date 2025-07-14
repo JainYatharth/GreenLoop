@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
-import { Leaf, Recycle, RotateCcw, ShoppingBag, Heart, Loader2 } from "lucide-react"
+import { Leaf, Recycle, RotateCcw, ShoppingBag, Heart, Loader2, Target } from "lucide-react"
 import instance from "../axiosConfig"
+import "./AuthForm.css"
 
 const ImpactDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null)
@@ -108,11 +109,11 @@ const ImpactDashboard = () => {
   // Prepare pie chart data
   const pieData = dashboardData
     ? [
-        { name: "Resale", value: dashboardData.distributionData.resale, color: "#10b981", icon: ShoppingBag },
-        { name: "Refurbish", value: dashboardData.distributionData.refurbish, color: "#3b82f6", icon: RotateCcw },
-        { name: "Recycle", value: dashboardData.distributionData.recycle, color: "#f59e0b", icon: Recycle },
-        { name: "Donate", value: dashboardData.distributionData.donate, color: "#ef4444", icon: Heart },
-      ]
+      { name: "Resale", value: dashboardData.distributionData.resale, color: "#10b981", icon: ShoppingBag },
+      { name: "Refurbish", value: dashboardData.distributionData.refurbish, color: "#3b82f6", icon: RotateCcw },
+      { name: "Recycle", value: dashboardData.distributionData.recycle, color: "#f59e0b", icon: Recycle },
+      { name: "Donate", value: dashboardData.distributionData.donate, color: "#ef4444", icon: Heart },
+    ]
     : []
 
   // Custom tooltip for charts
@@ -133,9 +134,9 @@ const ImpactDashboard = () => {
 
   if (loading) {
     return (
-      <div className="w-full max-w-7xl mx-auto p-6 flex items-center justify-center min-h-96">
+      <div className="h-full flex items-center justify-center">
         <div className="flex items-center gap-3">
-          <Loader2 className="w-8 h-8 animate-spin text-purple-600" />
+          <Loader2 className="w-8 h-8 animate-spin text-green-600" />
           <span className="text-gray-600 text-lg">Loading dashboard data...</span>
         </div>
       </div>
@@ -144,12 +145,12 @@ const ImpactDashboard = () => {
 
   if (error) {
     return (
-      <div className="w-full max-w-7xl mx-auto p-6 flex items-center justify-center min-h-96">
+      <div className="h-full flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-600 text-lg mb-4">{error}</div>
           <button
             onClick={fetchDashboardData}
-            className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
           >
             Retry
           </button>
@@ -160,57 +161,84 @@ const ImpactDashboard = () => {
 
   if (!dashboardData) {
     return (
-      <div className="w-full max-w-7xl mx-auto p-6 flex items-center justify-center min-h-96">
+      <div className="h-full flex items-center justify-center">
         <div className="text-gray-600">No data available</div>
       </div>
     )
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6 space-y-6">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Leaf className="w-8 h-8 text-green-600" />
-          <h1 className="text-3xl font-bold text-gray-900">Impact Dashboard</h1>
-        </div>
-        <p className="text-gray-600 text-lg">
-          Tracking our environmental impact through sustainable returns processing
-        </p>
-      </div>
+    <div className="h-full p-6">
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-12 grid-rows-11 h-full">
+        {/* Welcome Card - Top Left (Large) */}
+        <div className="col-span-8 cardm row-span-5 bg-gradient-to-br from-green-300 to-teal-300 rounded-2xl p-8 text-white relative overflow-hidden">
+          <div
+            className="absolute  inset-0 opacity-80 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://media.istockphoto.com/id/469538141/photo/plant-sprouting-from-the-dirt-with-a-blurred-background.jpg?s=612x612&w=0&k=20&c=uc-WaLHzRlsrBsHrTVO4fEqRqPjkh-MHtlGLj-QWI64=')",
+              backgroundPosition: "center -85%"
+             }}
+          ></div>
 
-      {/* Total Items Card */}
-      <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
-        <div className="flex items-center justify-center gap-4 mb-4">
-          <div className="p-3 bg-purple-100 rounded-full">
-            <Recycle className="w-8 h-8 text-purple-600" />
-          </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900">Total Items Returned</h2>
-            <p className="text-gray-600">Processed this month</p>
+          <div className="relative leaf z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <Leaf className="w-8 h-8" />
+              <h1 className="font-bold">Impact Dashboard</h1>
+            </div>
+            
+            <div className="flex items-center gap-170 stat">
+              <div>
+                <div className="text-7xl font-bold">{dashboardData.totalItems}</div>
+                <div className="text-green-200">Items Processed</div>
+              </div>
+              <div>
+                <div className="text-7xl font-bold">{dashboardData.totalCo2Saved.toFixed(1)} kg</div>
+                <div className="text-green-200">CO₂ Saved</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="text-6xl font-bold text-purple-600 mb-2">{dashboardData.totalItems}</div>
-        <div className="text-lg text-gray-500">items processed sustainably</div>
-      </div>
 
-      {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Distribution Pie Chart */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Return Outcomes Distribution</h3>
-          <div className="flex flex-col lg:flex-row items-center gap-6">
-            <div className="w-full lg:w-2/3">
-              <ResponsiveContainer width="100%" height={300}>
+        {/* Quick Stats Card - Top Right */}
+        <div className="col-span-4 cardm row-span-5 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-2xl p-6 text-white relative overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-80 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://plus.unsplash.com/premium_photo-1675127366598-f6c344e5233b?q=80&w=1116&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+          ></div>
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-4">
+              <Target className="w-6 leaf h-6" />
+              <h1 className="text-xl font-semibold">This Month</h1>
+            </div>
+            <div className="space-y-4">
+              <div className="statm">
+                <div className="text-4xl font-bold">{dashboardData.percentages.resale}%</div>
+                <div className="text-blue-200 text-xl text-sm">Resale Rate</div>
+              </div>
+              <div className="statm">
+                <div className="text-4xl font-bold">{Math.round(dashboardData.totalCo2Saved / 4.6)}</div>
+                <div className="text-blue-200 text-xl text-sm">Car-free Days</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Distribution Chart - Middle Left */}
+        <div className="col-span-6 cardm row-span-5 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h3 className="text-2xl text-gray-900 mb-6">Return Outcomes Distribution</h3>
+          <div className="flex items-center gap-6 h-full">
+            <div className="flex-1">
+              <ResponsiveContainer width="110%" height={250}>
                 <PieChart>
                   <Pie
                     data={pieData}
                     cx="50%"
                     cy="50%"
                     innerRadius={60}
-                    outerRadius={120}
+                    outerRadius={100}
                     paddingAngle={2}
                     dataKey="value"
+                    
                   >
                     {pieData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -220,19 +248,19 @@ const ImpactDashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="w-full lg:w-1/3 space-y-3">
+            <div className="flex-1 space-y-3">
               {pieData.map((item, index) => {
                 const IconComponent = item.icon
                 return (
-                  <div key={index} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                  <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50">
                     <div className="p-2 rounded-full" style={{ backgroundColor: `${item.color}20` }}>
                       <IconComponent className="w-4 h-4" style={{ color: item.color }} />
                     </div>
                     <div className="flex-1">
-                      <div className="font-medium text-gray-900">{item.name}</div>
-                      <div className="text-sm text-gray-500">{item.value} items</div>
+                      <div className="font-medium text-xl text-gray-900">{item.name}</div>
+                      <div className="text-m text-gray-500">{item.value} items</div>
                     </div>
-                    <div className="font-bold text-gray-900">{dashboardData.percentages[item.name.toLowerCase()]}%</div>
+                    <div className="font-bold text-xl text-gray-900">{dashboardData.percentages[item.name.toLowerCase()]}%</div>
                   </div>
                 )
               })}
@@ -240,33 +268,34 @@ const ImpactDashboard = () => {
           </div>
         </div>
 
-        {/* CO₂ Saved Bar Chart */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">CO₂ Saved by Category</h3>
-          <ResponsiveContainer width="100%" height={300}>
+        {/* CO₂ Chart - Middle Right */}
+        <div className="col-span-6 cardm row-span-5 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">CO₂ Saved by Category</h2>
+          <ResponsiveContainer width="100%" height={250}>
             <BarChart data={dashboardData.co2Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="category" tick={{ fontSize: 12 }} angle={-45} textAnchor="end" height={80} />
-              <YAxis tick={{ fontSize: 12 }} label={{ value: "CO₂ Saved (kg)", angle: -90, position: "insideLeft" }} />
+              <YAxis tick={{ fontSize: 12 }} label={{ value: "CO₂ Saved(kg)", angle: -90, position: "insideLeft", offset: 10,style: { textAnchor: 'middle'} }} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="co2Saved" fill="#10b981" radius={[4, 4, 0, 0]} name="co2Saved" />
             </BarChart>
           </ResponsiveContainer>
         </div>
-      </div>
-      <div>
-        {/* Total CO₂ Impact */}
-        <div className="bg-white rounded-lg p-6 shadow-sm text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Leaf className="w-8 h-8 text-green-600" />
-            <h4 className="text-xl font-bold text-gray-900">Total Environmental Impact</h4>
+
+        {/* Environmental Impact Summary - Bottom */}
+        <div className="col-span-12  row-span-1 bg-teal-50 rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div className="flex items-center h-full justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-green-100 rounded-full">
+                <Leaf className="w-6 h-6 text-green-600" />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-gray-900">Total Environmental Impact</h4>
+                <p className="text-gray-600">Making a difference through sustainable returns processing</p>
+              </div>
+            </div>
+            
           </div>
-          <div className="text-4xl font-bold text-green-600 mb-2">{dashboardData.totalCo2Saved.toFixed(1)} kg</div>
-          <div className="text-lg text-gray-600 mb-4">CO₂ emissions saved this month</div>
-          <div className="text-sm text-gray-500">
-            Equivalent to removing a car from the road for {Math.round(dashboardData.totalCo2Saved / 4.6)} days*
-          </div>
-          <div className="text-xs text-gray-400 mt-2">*Based on average car emissions of 4.6 kg CO₂ per day</div>
         </div>
       </div>
     </div>
@@ -274,4 +303,3 @@ const ImpactDashboard = () => {
 }
 
 export default ImpactDashboard
-
