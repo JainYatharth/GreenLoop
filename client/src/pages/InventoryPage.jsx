@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { Package, Shirt, Home, Gamepad2, ShoppingCart, Filter, Loader2 } from "lucide-react"
 import InventoryCard from "../components/InventoryCard"

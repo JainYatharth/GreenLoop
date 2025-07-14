@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { Home, Package, RotateCcw, LogOut } from "lucide-react"
+import instance from "../axiosConfig.js"
 
 const Navbar = () => {
   const { setUser } = useContext(AuthContext)
@@ -13,17 +14,11 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       // Call logout API to invalidate token on server
-      await fetch("/api/auth/logout", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      await instance.post("/api/auth/logout")
     } catch (error) {
       console.error("Logout error:", error)
     } finally {
-      // Clear local storage and redirect regardless of API call result
-      localStorage.removeItem("token")
+      // Clear user state and redirect
       setUser(null)
       navigate("/")
     }

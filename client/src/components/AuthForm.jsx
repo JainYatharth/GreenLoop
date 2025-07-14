@@ -26,10 +26,14 @@ const AuthForm = ({ onAuthSuccess }) => {
 
       const res = await axios.post(endpoint, payload)
 
-      const { token, user } = res.data
-      localStorage.setItem("token", token)
-      onAuthSuccess(user)
+      if (res.data.success) {
+        const { user } = res.data
+        onAuthSuccess(user)
+      } else {
+        setErr(res.data.message || "Authentication failed")
+      }
     } catch (error) {
+      console.error("Auth error:", error)
       setErr(error.response?.data?.message || "Something went wrong.")
     } finally {
       setLoading(false)

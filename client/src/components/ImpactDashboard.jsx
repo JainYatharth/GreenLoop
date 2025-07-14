@@ -49,7 +49,11 @@ const ImpactDashboard = () => {
       if (!acc[category]) {
         acc[category] = { resale: 0, refurbish: 0, recycle: 0, discard: 0 }
       }
-      acc[category][item.route.toLowerCase()]++
+      const route = (item.route || item.routeTo || "").toLowerCase()
+      if (route === "resale") acc[category].resale++
+      else if (route === "refurbish") acc[category].refurbish++
+      else if (route === "recycle") acc[category].recycle++
+      else if (route === "discard") acc[category].discard++
       return acc
     }, {})
 
