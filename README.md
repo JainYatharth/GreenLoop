@@ -19,8 +19,6 @@ GreenLoopX transforms the return journey into a circular, eco-intelligent flow b
 
 -Circular actions: resell, recycle, refurbish, donate
 
-
-
 🧩 Features
 
 ✅ Secure JWT-based login & role-based dashboard
@@ -36,47 +34,75 @@ GreenLoopX transforms the return journey into a circular, eco-intelligent flow b
 ✅ Clean, responsive UI with focus on associate usability
 
 📦 Tech Stack
+
 Layer	Technology
+
 Frontend	React.js, Tailwind CSS, Recharts
+
 Backend	Spring Boot (Java), REST APIs
+
 Database	PostgreSQL
+
 Auth	JWT Token Auth
+
 State Mgmt	React Hooks, Context API
 
 🔄 Return Lifecycle
+
 -Associate logs in securely
+
 -Navigates to Return Form → enters product details
+
 -Item is classified into return route (Resale / Recycle / Donate / Refurbish)
+
 -Lands into Inventory for tracking
+
 -Team updates inventory status when action is taken
+
 -Dashboard reflects real-time impact metrics (CO₂ saved, landfill reduced, etc.)
 
 📊 Dashboard Metrics
+
 -Total Returns Logged
+
 -Items Diverted from Landfill
+
 -Total Donations Made
+
 -Estimated Carbon Footprint Saved
+
 -Live Inventory Count
+
 -Top Return Categories
 
 🛠️ Setup Instructions
+
 🔧 Prerequisites: Node.js, PostgreSQL, Java 17+
 
 Clone the repo
+
 -git clone https://github.com/JainYatharth/GreenLoop
 
 Frontend Setup
+
 -cd client
+
 -npm install
+
 -npm run dev
 
 Backend Setup
+
 -cd server
+
 -./mvnw spring-boot:run
 
 Create PostgreSQL DB
+
 -Create DB → Update application.properties → Run backend
 
 👥 Team GreenLoop
+
 Yatharth Jain (JainYatharth)
+
 Priyanshu Jha (priyanshujhagithub)
