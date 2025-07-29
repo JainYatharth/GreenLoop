@@ -1,7 +1,8 @@
-GreenLoopX 🌱
+**GreenLoop** 🌱
+
 A Circular Returns & Sustainability Intelligence Platform
 
-GreenLoopX is an innovative full-stack web application. It empowers retailers to manage returned products sustainably by triaging them for resale, donation, recycling, or refurbishment, while providing real-time insights into environmental impact.
+GreenLoop is an innovative full-stack web application. It empowers retailers to manage returned products sustainably by triaging them for resale, donation, recycling, or refurbishment, while providing real-time insights into environmental impact.
 
 📽 Demo Video
 Watch working demo- https://youtu.be/PFKPjUbtbk0?si=KIAFT6qSgXzvaTDt
