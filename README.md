@@ -8,18 +8,30 @@ Watch working demo- https://youtu.be/PFKPjUbtbk0?si=KIAFT6qSgXzvaTDt
 
 🧠 Project Idea
 Retail returns are a major challenge for sustainability — with billions of dollars worth of merchandise returned annually, leading to waste, emissions, and profit loss.
+
 GreenLoopX transforms the return journey into a circular, eco-intelligent flow by enabling:
+
 -Structured return intake and categorization
+
 -Dynamic inventory triaging
+
 -Real-time environmental and operational analytics
+
 -Circular actions: resell, recycle, refurbish, donate
 
+
 🧩 Features
+
 ✅ Secure JWT-based login & role-based dashboard
+
 ✅ Return Form with auto-classification logic
+
 ✅ Dynamic Inventory Module to track and update returned items
+
 ✅ Real-time Dashboard: returns stats, landfill diversion, donation %, carbon savings
+
 ✅ Update inventory routes and reflect real-time dashboard metrics
+
 ✅ Clean, responsive UI with focus on associate usability
 
 📦 Tech Stack
