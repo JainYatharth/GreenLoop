@@ -225,7 +225,7 @@ const ImpactDashboard = () => {
 
         {/* Distribution Chart - Middle Left */}
         <div className="col-span-6 cardm row-span-5 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-          <h3 className="text-2xl text-gray-900 mb-6">Return Outcomes Distribution</h3>
+          <h3 className="text-2xl text-gray-900">Return Outcomes Distribution</h3>
           <div className="flex items-center gap-6 h-full">
             <div className="flex-1">
               <ResponsiveContainer width="110%" height={250}>
@@ -260,7 +260,7 @@ const ImpactDashboard = () => {
                       <div className="font-medium text-xl text-gray-900">{item.name}</div>
                       <div className="text-m text-gray-500">{item.value} items</div>
                     </div>
-                    <div className="font-bold text-xl text-gray-900">{dashboardData.percentages[item.name.toLowerCase()]}%</div>
+                    <div className="marg font-bold text-xl text-gray-900">{dashboardData.percentages[item.name.toLowerCase()]}%</div>
                   </div>
                 )
               })}
@@ -270,7 +270,7 @@ const ImpactDashboard = () => {
 
         {/* CO₂ Chart - Middle Right */}
         <div className="col-span-6 cardm row-span-5 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">CO₂ Saved by Category</h2>
+          <h3 className="text-xl font-bold text-gray-900 mb-6">CO₂ Saved by Category</h3>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={dashboardData.co2Data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />

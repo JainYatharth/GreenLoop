@@ -123,70 +123,71 @@ const ReturnForm = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen  bg-gray-50">
       {/* Header */}
       <div className="mar bg-gradient-to-r from-teal-500 to-teal-700 h-14 flex items-center justify-center">
         <h1 className="txt text-white">Returns Intake Form</h1>
       </div>
       {/* Form Container - Centered with increased width */}
-      <div className="flex items-center justify-center px-6 py-20">
+      <div className="flex form-card items-center justify-center px-6 py-20">
         <div className="w-full max-w-4xl">
           <form onSubmit={handleSubmit} className="space-y-20">
             {/* Product Name */}
-            <div className="mar space-y-5">
-              <div className="flex items-center gap-4">
-                <Package className="h-8 w-8 text-teal-600" />
-                <label className="text-xl text-gray-800">
-                  Product Name <span className="text-red-500">*</span>
-                </label>
-              </div>
-              <input
-                type="text"
-                name="productName"
-                value={formData.productName}
-                onChange={handleInputChange}
-                className={`w-full px-6 py-6 h-10 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${
-                  errors.productName
-                    ? "border-red-400 bg-red-50 focus:border-red-500"
-                    : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
-                }`}
-                placeholder="Enter product name"
-              />
-              {errors.productName && (
-                <div className="flex items-center gap-3 text-red-600">
-                  <AlertCircle className="h-5 w-5" />
-                  <span className="text-base font-medium">{errors.productName}</span>
+            <div className="fields-grid">
+              <div className="mar space-y-5">
+                <div className="flex items-center gap-4">
+                  <Package className="h-8 w-8 text-teal-600" />
+                  <label className="text-xl text-gray-800">
+                    Product Name <span className="text-red-500">*</span>
+                  </label>
                 </div>
-              )}
+                <input
+                  type="text"
+                  name="productName"
+                  value={formData.productName}
+                  onChange={handleInputChange}
+                  className={`w-full px-6 py-6 h-10 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${errors.productName
+                      ? "border-red-400 bg-red-50 focus:border-red-500"
+                      : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
+                    }`}
+                  placeholder="Enter product name"
+                />
+                {errors.productName && (
+                  <div className="flex items-center gap-3 text-red-600">
+                    <AlertCircle className="h-5 w-5" />
+                    <span className="text-base font-medium">{errors.productName}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Product ID */}
+              <div className="mar space-y-5">
+                <div className="flex items-center gap-4">
+                  <Hash className="h-8 w-8 text-teal-600" />
+                  <label className="text-xl text-gray-800">
+                    Product ID <span className="text-red-500">*</span>
+                  </label>
+                </div>
+                <input
+                  type="text"
+                  name="productId"
+                  value={formData.productId}
+                  onChange={handleInputChange}
+                  className={`w-full px-6 h-10 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${errors.productId
+                      ? "border-red-400 bg-red-50 focus:border-red-500"
+                      : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
+                    }`}
+                  placeholder="Enter product ID"
+                />
+                {errors.productId && (
+                  <div className="flex items-center gap-3 text-red-600">
+                    <AlertCircle className="h-5 w-5" />
+                    <span className="text-base font-medium">{errors.productId}</span>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* Product ID */}
-            <div className="mar space-y-5">
-              <div className="flex items-center gap-4">
-                <Hash className="h-8 w-8 text-teal-600" />
-                <label className="text-xl text-gray-800">
-                  Product ID <span className="text-red-500">*</span>
-                </label>
-              </div>
-              <input
-                type="text"
-                name="productId"
-                value={formData.productId}
-                onChange={handleInputChange}
-                className={`w-full px-6 h-10 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 ${
-                  errors.productId
-                    ? "border-red-400 bg-red-50 focus:border-red-500"
-                    : "border-gray-300 bg-white focus:border-teal-500 shadow-sm hover:shadow-md"
-                }`}
-                placeholder="Enter product ID"
-              />
-              {errors.productId && (
-                <div className="flex items-center gap-3 text-red-600">
-                  <AlertCircle className="h-5 w-5" />
-                  <span className="text-base font-medium">{errors.productId}</span>
-                </div>
-              )}
-            </div>
 
             {/* Product Category */}
             <div className="mar space-y-5">
@@ -200,11 +201,10 @@ const ReturnForm = () => {
                 name="productCategory"
                 value={formData.productCategory}
                 onChange={handleInputChange}
-                className={`w-full h-10 px-6 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 bg-white ${
-                  errors.productCategory
+                className={`w-full h-10 px-6 py-6 text-xl border-2 rounded-2xl focus:outline-none focus:ring-0 transition-all duration-200 bg-white ${errors.productCategory
                     ? "border-red-400 bg-red-50 focus:border-red-500"
                     : "border-gray-300 focus:border-teal-500 shadow-sm hover:shadow-md"
-                }`}
+                  }`}
               >
                 <option value="">Select category</option>
                 {categories.map((category) => (
@@ -249,11 +249,10 @@ const ReturnForm = () => {
                 {conditions.map((condition) => (
                   <label
                     key={condition}
-                    className={`flex h-7.5 items-center justify-center p-8 border-2 rounded-2xl cursor-pointer transition-all duration-200 ${
-                      formData.condition === condition
+                    className={`flex h-7.5 items-center justify-center p-8 border-2 rounded-2xl cursor-pointer transition-all duration-200 ${formData.condition === condition
                         ? "border-teal-500 bg-teal-50 text-teal-700 shadow-lg"
                         : "border-gray-300 bg-white hover:border-teal-300 hover:bg-teal-25 shadow-sm hover:shadow-md"
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -280,7 +279,7 @@ const ReturnForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-44 h-10 flex justify-center txt2 items-center text-2xl font-bold text-white bg-teal-600 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition-all duration-200 shadow-lg hover:shadow-2xl"
+                className="w-44 h-10 btn-submit flex justify-center txt2 items-center text-2xl font-bold text-white bg-teal-600 hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-full transition-all duration-200 shadow-lg hover:shadow-2xl"
               >
                 {loading ? (
                   <>

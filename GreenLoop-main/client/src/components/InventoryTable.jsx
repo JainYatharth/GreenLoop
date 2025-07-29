@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { X, Edit3, Check, Loader2 } from "lucide-react"
-
+import "./AuthForm.css"
 const InventoryTable = ({ category, items, loading, onClose, onUpdateRoute }) => {
   const [editingItem, setEditingItem] = useState(null)
   const [editRoute, setEditRoute] = useState("")
@@ -54,12 +54,12 @@ const InventoryTable = ({ category, items, loading, onClose, onUpdateRoute }) =>
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border overflow-hidden animate-in slide-in-from-top-2 duration-300">
+    <div className="bg-white tab rounded-lg shadow-sm border overflow-hidden animate-in slide-in-from-top-2 duration-300">
       {/* Table Header */}
-      <div className={`bg-gradient-to-r ${category.color} px-6 py-4 flex justify-between items-center`}>
+      <div className={`h-10 bg-gradient-to-r ${category.color} px-6 py-4 flex justify-between items-center`}>
         <div className="flex items-center gap-3">
           <category.icon className="w-5 h-5 text-white" />
-          <h3 className="text-lg font-semibold text-white">{category.name} - Recent Items</h3>
+          <h3 className=" text-white">{category.name} - Recent Items</h3>
         </div>
         <button onClick={onClose} className="text-white hover:bg-white/20 rounded-full p-1 transition-colors">
           <X className="w-5 h-5" />

@@ -60,7 +60,7 @@
 }
 
 .lcard{
-  margin-top: 15px;
+  margin-top: 35px;
 }
 .ltext{
   font-weight: 450;
@@ -98,10 +98,75 @@
 .cardm h3{
   font-size: 25px;
   margin-bottom: -15px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
-.cardm h2{
-  font-size: 25px;
-}
+
 .marg{
   margin-right: 17px;
+}
+.logout{
+  background-color: #888;      /* grey by default */
+  color: #fff;                 /* white text */
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 30px;
+  height: 40px;
+}
+.logout:hover,
+.logout:active {
+  background-color: rgb(158, 36, 36);      /* bright red on hover or click */
+}
+
+.navb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;              /* space between icon and text */
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  color: #4A5568;           /* gray-600 */
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.navb:hover {
+  background-color: #F7FAFC;/* gray-100 */
+  color: #319795;           /* teal-600 */
+}
+
+.navb.active {
+  color: #2C7A7B;           /* teal-700 */
+  font-weight: 600;
+  border-bottom-color: #2C7A7B; /* teal underline */
+}
+.inventory-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.inventory-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.st{
+  margin-top: 5px;
+}
+.bar{
+  margin-top: 5px;
+}
+.tab{
+  margin: 10px 10px 10px 10px;
+
+}
+.logo{
+  height: 35px;
+  margin-left: 10px;
+}
+.tt{
+  margin-right: 10px;
 }

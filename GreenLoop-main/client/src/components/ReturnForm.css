@@ -12,3 +12,29 @@
     border-radius: 15px;
     background-color: oklch(75.831% 0.15029 159.51);
 }
+.form-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 2rem;
+  max-width: 80%;
+  margin: 2rem auto;
+}
+
+.btn-submit {
+  margin: 2rem auto 0;
+  padding: 0.75rem 2rem;
+  background: rgb(2, 119, 109);
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit:hover {
+  background: rgb(2, 93, 85);
+}
+

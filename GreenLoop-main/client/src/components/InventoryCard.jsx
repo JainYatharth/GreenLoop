@@ -1,14 +1,14 @@
 "use client"
 
 import { ChevronDown, ChevronUp } from "lucide-react"
-
+import "./AuthForm.css"
 const InventoryCard = ({ category, isExpanded, onClick }) => {
   const IconComponent = category.icon
 
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-lg shadow-sm border cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1 ${
+      className={`bg-white inventory-card rounded-lg shadow-sm border cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-1 ${
         isExpanded ? " shadow-lg" : ""
       }`}
     >
@@ -17,9 +17,9 @@ const InventoryCard = ({ category, isExpanded, onClick }) => {
 
       <div className="p-6">
         {/* Icon and Title */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex text-2xl font-bold items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color} bg-opacity-10`}>
+            <div>
               <IconComponent className="w-6 h-6 text-gray-700" />
             </div>
             <h3 className="font-semibold text-gray-900">{category.name}</h3>
@@ -33,17 +33,17 @@ const InventoryCard = ({ category, isExpanded, onClick }) => {
 
         {/* Stats */}
         <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Total Items</span>
-            <span className="font-semibold text-gray-900">{category.totalItems}</span>
+          <div className="flex st justify-between items-center">
+            <span className="text-l text-gray-600">Total Items</span>
+            <span className="font-semibold text-l text-gray-900">{category.totalItems}</span>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-gray-600">Resale Eligible</span>
-            <span className="font-semibold text-green-600">{category.resaleEligible}</span>
+          <div className="flex  justify-between items-center">
+            <span className="text-l text-gray-600">Resale Eligible</span>
+            <span className="font-semibold text-l text-green-600">{category.resaleEligible}</span>
           </div>
 
           {/* Progress Bar */}
-          <div className="mt-4">
+          <div className="bar mt-4">
             <div className="flex justify-between text-xs text-gray-500 mb-1">
               <span>Resale Rate</span>
               <span>{Math.round((category.resaleEligible / category.totalItems) * 100)}%</span>
